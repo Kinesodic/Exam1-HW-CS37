@@ -4,7 +4,7 @@ using namespace std;
 
 double payCalc(double hours, double rate) { //not sure if this is correct because it does not find overtime value, might make this part of the main or go back and check for overtime
 	if (hours > 4)
-		return rate * (40 + (hours - 40)*1.5);
+		return rate * 40;
 	return rate * hours;
 }
 
@@ -19,6 +19,8 @@ double sTaxCalc(double pay, double sTax) {
 int main() {
 	double hours[4], rate[4], fTaxRate[4], sTaxRate[4], gPay[4], fTaxOwed[4], sTaxOwed[4], totTax[4], netPay[4];
 	char name[4][20];
+	int OTNum;
+	double OTPay[4] = {0, 0, 0, 0};
 
 	for (int i = 0; i < 4; i++) {//gets all the information from the user
 		cout << "Enter employee name: ";
@@ -42,6 +44,11 @@ int main() {
 	//for loop to print out formatted info
 	for (int j = 0; j < 4; j++) {//could still be i, made it j for clarity
 		//formatted table here
+		if (hours[j] > 40){
+			OTNum++;
+			OTPay[j] = (hours[j] - 40) * 1.5 * rate[j];
+			//print something showing the overtime pay here
+		}
 	}
 	//feels pretty brute force, but is more efficient than making another for loop
 	cout << "Total gross pay: \t\t$" << gPay[0] + gPay[1] + gPay[2] + gPay[3] << endl; //I haven't set the format to dollar amount because that will probably be left over from the loop
