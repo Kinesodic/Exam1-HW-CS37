@@ -19,7 +19,9 @@ double sTaxCalc(double pay, double sTax) {
 int main() {
 	double hours[4], rate[4], fTaxRate[4], sTaxRate[4], gPay[4], fTaxOwed[4], sTaxOwed[4], totTax[4], netPay[4];
 	char name[4][20];
-
+	double totGrossPay, totFedTax, totStateTax, totNetPay = 0;
+	int OTNum;
+	
 	for (int i = 0; i < 4; i++) {//gets all the information from the user
 		cout << "Enter employee name: ";
 		cin.getline(name[i], 20);
@@ -35,7 +37,12 @@ int main() {
 		fTaxOwed[i] = fTaxCalc(gPay[i], fTaxRate[i]);
 		sTaxOwed[i] = sTaxCalc(gPay[i], sTaxRate[i]);
 		netPay[i] = gPay[i] - fTaxOwed[i] - sTaxOwed[i];
-
+		
+		totGrossPay += gPay[i];
+		totFedTax += fTaxOwed[i];
+		totStateTax += sTaxOwed[i];
+		totNetPay += netPay[i];
+			
 		cout << endl;
 		cin.get();
 	}
@@ -44,9 +51,11 @@ int main() {
 		//formatted table here
 	}
 	//feels pretty brute force, but is more efficient than making another for loop
+	/*
 	cout << "Total gross pay: \t\t$" << gPay[0] + gPay[1] + gPay[2] + gPay[3] << endl; //I haven't set the format to dollar amount because that will probably be left over from the loop
 	cout << "Total federal tax owed: \t$" << fTaxOwed[0] + fTaxOwed[1] + fTaxOwed[2] + fTaxOwed[3] << endl;
 	cout << "Total state tax owed: \t\t$" << sTaxOwed[0] + sTaxOwed[1] + sTaxOwed[2] + sTaxOwed[3] << endl;
 	cout << "Total net pay: \t\t\t$" << netPay[0] + netPay[1] + netPay[2] + netPay[3] << endl;
 	system("PAUSE");
+	*/
 }
