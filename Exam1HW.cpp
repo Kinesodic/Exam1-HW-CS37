@@ -3,7 +3,7 @@
 using namespace std;
 
 double payCalc(double hours, double rate) { //not sure if this is correct because it does not find overtime value, might make this part of the main or go back and check for overtime
-	if (hours > 4)
+	if (hours > 40)
 		return rate * 40;
 	return rate * hours;
 }
